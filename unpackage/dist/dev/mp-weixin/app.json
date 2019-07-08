@@ -139,6 +139,12 @@
         "ibeacon/ibeacon",
         "vibrate/vibrate"
       ]
+    },
+    {
+      "root": "pages/selfCenter",
+      "pages": [
+        "test/test"
+      ]
     }
   ],
   "window": {

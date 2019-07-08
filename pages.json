@@ -49,7 +49,8 @@
 					}
 				}
 			}
-		}, {
+		}, 
+		{
 			"path": "pages/tabBar/extUI/extUI",
 			"style": {
 				"navigationBarTitleText": "扩展组件",
@@ -1110,6 +1111,16 @@
 					}
 				}
 			]
+		},
+		{"root": "pages/selfCenter",
+		"pages": [{
+				"path": "test/test",
+				"style": {
+					"navigationBarTitleText": "个人中心-测试",
+					"enablePullDownRefresh": true,
+					"onReachBottomDistance": 20
+				}
+			}]
 		}
 	],
 	"globalStyle": {

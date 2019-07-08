@@ -5,10 +5,11 @@ import pageHead from './components/page-head.vue'
 import pageFoot from './components/page-foot.vue'
 import uLink from '@/components/uLink.vue'
 import store from './store'
-
+import apiRequest from '@/common/request.js'
 Vue.config.productionTip = false
 
 Vue.prototype.$store = store
+Vue.prototype.$request = apiRequest
 Vue.prototype.$backgroundAudioData = {
 	playing: false,
 	playTime: 0,

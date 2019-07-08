@@ -1,6 +1,9 @@
 <template>
 	<view>
 		asfd
+		<navigator url="/pages/selfCenter/test/test" hover-class="navigator-hover">
+			<button>去个人测试</button>
+		</navigator>
 	</view>
 </template>
 

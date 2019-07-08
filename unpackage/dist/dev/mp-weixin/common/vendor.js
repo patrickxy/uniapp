@@ -752,6 +752,71 @@ parseHtml;exports.default = _default;
 
 /***/ }),
 
+/***/ "../../../../project/patrick/uniappdemo/common/request.js":
+/*!*******************************************************!*\
+  !*** E:/project/patrick/uniappdemo/common/request.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 对于 GET 方法，会将数据转换为 query string。例如 { name: 'name', age: 18 } 转换后的结果是 name=name&age=18。
+// 对于 POST 方法且 header['content-type'] 为 application/json 的数据，会进行 JSON 序列化。
+// 对于 POST 方法且 header['content-type'] 为 application/x-www-form-urlencoded 的数据，会将数据转换为 query string
+var baseUrl = 'https://www.easy-mock.com/mock/5b307069835738790e9914b7/front/';
+function apiRequest(method, url, params, headers) {
+  var tempUrl = url.indexOf('http') > -1 ? url : baseUrl + url;
+  return new Promise(function (resolve, reject) {
+    uni.
+    request({
+      method: method,
+      dataType: 'json',
+      url:
+      method === 'GET' ?
+      tempUrl.indexOf('?') > -1 ?
+      tempUrl + '&time=' + new Date().getTime() :
+      tempUrl + '?time=' + new Date().getTime() :
+      tempUrl,
+      data: params,
+      header: Object.assign({}, headers) }).
+
+    then(function (response) {
+      resolve(response[1].data);
+    }).
+    catch(function (err) {
+      if (err) {
+        reject(err);
+      }
+    });
+  });
+}
+/**
+   *  get post put delete请求方法
+   * @param url
+   * @param params
+   * @param data
+   * @returns {Promise}
+   */var _default =
+{
+  get: function get(url) {var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var headers = arguments.length > 2 ? arguments[2] : undefined;
+    return apiRequest('GET', url, params, headers);
+  },
+  post: function post(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    return apiRequest('POST', url, data, headers);
+  },
+  put: function put(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return apiRequest('PUT', url, data, {});
+  },
+  delete: function _delete(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    return apiRequest('DELETE', url, data, headers);
+  },
+  patch: function patch(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var headers = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    return apiRequest('PATCH', url, data, headers);
+  } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
+
+/***/ }),
+
 /***/ "../../../../project/patrick/uniappdemo/common/util.js":
 /*!****************************************************!*\
   !*** E:/project/patrick/uniappdemo/common/util.js ***!
@@ -21657,11 +21722,12 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ "../../../../
 
 
 
-var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ "../../../../project/patrick/uniappdemo/store/index.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var pageHead = function pageHead() {return __webpack_require__.e(/*! import() | components/page-head */ "components/page-head").then(__webpack_require__.bind(null, /*! ./components/page-head.vue */ "../../../../project/patrick/uniappdemo/components/page-head.vue"));};var pageFoot = function pageFoot() {return __webpack_require__.e(/*! import() | components/page-foot */ "components/page-foot").then(__webpack_require__.bind(null, /*! ./components/page-foot.vue */ "../../../../project/patrick/uniappdemo/components/page-foot.vue"));};var uLink = function uLink() {return __webpack_require__.e(/*! import() | components/uLink */ "components/uLink").then(__webpack_require__.bind(null, /*! @/components/uLink.vue */ "../../../../project/patrick/uniappdemo/components/uLink.vue"));};
-
+var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ "../../../../project/patrick/uniappdemo/store/index.js"));
+var _request = _interopRequireDefault(__webpack_require__(/*! @/common/request.js */ "../../../../project/patrick/uniappdemo/common/request.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var pageHead = function pageHead() {return __webpack_require__.e(/*! import() | components/page-head */ "components/page-head").then(__webpack_require__.bind(null, /*! ./components/page-head.vue */ "../../../../project/patrick/uniappdemo/components/page-head.vue"));};var pageFoot = function pageFoot() {return __webpack_require__.e(/*! import() | components/page-foot */ "components/page-foot").then(__webpack_require__.bind(null, /*! ./components/page-foot.vue */ "../../../../project/patrick/uniappdemo/components/page-foot.vue"));};var uLink = function uLink() {return __webpack_require__.e(/*! import() | components/uLink */ "components/uLink").then(__webpack_require__.bind(null, /*! @/components/uLink.vue */ "../../../../project/patrick/uniappdemo/components/uLink.vue"));};
 _vue.default.config.productionTip = false;
 
 _vue.default.prototype.$store = _store.default;
+_vue.default.prototype.$request = _request.default;
 _vue.default.prototype.$backgroundAudioData = {
   playing: false,
   playTime: 0,
@@ -23294,6 +23360,23 @@ createPage(_swiperDot.default);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
 var _tag = _interopRequireDefault(__webpack_require__(/*! ./pages/extUI/tag/tag.vue */ "../../../../project/patrick/uniappdemo/pages/extUI/tag/tag.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_tag.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
+
+/***/ }),
+
+/***/ "../../../../project/patrick/uniappdemo/main.js?{\"page\":\"pages%2FselfCenter%2Ftest%2Ftest\"}":
+/*!*****************************************************************************************!*\
+  !*** E:/project/patrick/uniappdemo/main.js?{"page":"pages%2FselfCenter%2Ftest%2Ftest"} ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../project/patrick/uniappdemo/pages.json");
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
+var _test = _interopRequireDefault(__webpack_require__(/*! ./pages/selfCenter/test/test.vue */ "../../../../project/patrick/uniappdemo/pages/selfCenter/test/test.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_test.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),

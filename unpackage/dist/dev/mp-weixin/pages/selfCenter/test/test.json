@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "个人中心-测试",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 20,
+  "usingComponents": {}
+}
